@@ -21,10 +21,17 @@ jobs:
 
     - name: Run tests with Maven
       run: mvn test
-
-    - name: Upload test report
+      
+    - name: Publish Test Results (JUnit)
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: dorny/test-reporter@v1
       with:
-        name: surefire-reports
-        path: target/surefire-reports
+        name: JUnit Tests
+        path: target/surefire-reports/*.xml
+
+    # - name: Upload test report
+    #   if: always()
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: surefire-reports
+    #     path: target/surefire-reports
